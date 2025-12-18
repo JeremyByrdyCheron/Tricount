@@ -111,3 +111,33 @@ p {
   border: 1px solid #000;
   border-radius: 8px;
 }
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+
+form input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #6b6b6b;
+  box-shadow: 0 0 0 3px rgba(107, 107, 107, 0.1);
+  background-color: #fff;
+}
+
+form input:last-of-type {
+  margin-bottom: 5px;
+}

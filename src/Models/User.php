@@ -22,11 +22,11 @@ class User extends Database
 	public function setFirstname($value)
 	{
 		if (empty($value))
-			throw new Exception('Firstname is required');
-		if (strlen($value) < 3 || strlen($value) > 10)
-			throw new Exception('Firstname must be between 3 and 10 characters');
+			throw new Exception('Le prénom est requis');
+		if (strlen($value) < 3 || strlen($value) > 20)
+			throw new Exception('Le prénom doit faire entre 3 et 20 caractères');
 		if (!preg_match('/^[a-zA-ZÀ-ÿ]+$/', $value))
-			throw new Exception('Firstname can only contain letters and accentuated letters');
+			throw new Exception('Le prénom ne peut contenir que des lettres et des lettres accentuées');
 
 		$this->firstname = htmlspecialchars($value);
 	}
@@ -39,13 +39,13 @@ class User extends Database
 	public function setName($value)
 	{
 		if (empty($value))
-			throw new Exception('Name is required');
+			throw new Exception('Le nom est requis');
 		if (strlen($value) < 3 || strlen($value) > 20)
-			throw new Exception('Name must be between 3 and 20 characters');
+			throw new Exception('Le nom doit faire entre 3 et 20 caractères');
 		if (
 			!preg_match('/^[a-zA-ZÀ-ÿ]+$/', $value)
 		)
-			throw new Exception('Name can only contain letters and accentuated letters');
+			throw new Exception('Le nom ne peut contenir que des lettres et des lettres accentuées');
 
 		$this->name = htmlspecialchars($value);
 	}
@@ -58,9 +58,9 @@ class User extends Database
 	public function setEmail($value)
 	{
 		if (empty($value))
-			throw new Exception('Email is required');
+			throw new Exception("L'email est invalide");
 		if (!filter_var($value, FILTER_VALIDATE_EMAIL))
-			throw new Exception('Invalid email address');
+			throw new Exception('Adresse mail invalide');
 
 		$this->email = htmlspecialchars($value);
 	}
@@ -68,9 +68,9 @@ class User extends Database
 	public function setPassword($value)
 	{
 		if (empty($value))
-			throw new Exception('Password is required');
+			throw new Exception('Le mot de passe est requis');
 		if (strlen($value) < 3)
-			throw new Exception('Password must be at least 3 characters');
+			throw new Exception('Le mot de passe doit au moins faire 3 caractères');
 
 		$this->password = password_hash($value, PASSWORD_DEFAULT);
 	}
@@ -88,14 +88,14 @@ class User extends Database
 	public function setIban($value)
 	{
 		if (empty($value))
-			throw new Exception('IBAN is required');
+			throw new Exception("L'IBAN est requis");
 
 		$cleanIban = str_replace(' ', '', $value);
 
 		if (strlen($cleanIban) < 15 || strlen($cleanIban) > 34)
-			throw new Exception('IBAN must be between 15 and 34 characters');
+			throw new Exception("L'IBAN doit être entre 15 et 34 caractères");
 		if (!preg_match('/^[A-Z]{2}[0-9]{2}[A-Z0-9]+$/', $cleanIban))
-			throw new Exception('Invalid IBAN format');
+			throw new Exception("Format d'IBAN invalide");
 
 		$this->iban = htmlspecialchars($value);
 	}
