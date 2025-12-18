@@ -1,0 +1,40 @@
+<?php
+
+session_start();
+
+$tricountModel = new Models\Tricount();
+$userId = $_SESSION['user_id'] ?? null;
+$errors = [];
+
+// Traitement du formulaire de création
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'])) {
+    $title = trim($_POST['title']);
+    $currency = $_POST['currency'] ?? 'EUR';
+
+    if (!empty($title)) {
+        if ($tricountModel->create($title, $currency, $userId)) {
+            redirectTo('/');
+            exit;
+        } else {
+            $errors['global'] = "Erreur lors de la création.";
+        }
+    }
+}
+
+if (isset($_GET['delete'])) {
+    $idToDelete = (int) $_GET['delete'];
+    if ($tricountModel->delete($idToDelete)) {
+        redirectTo('/');
+        exit;
+    }
+}
+
+// Récupération des groupes pour la vue
+$myTricounts = $tricountModel->getUserTricounts($userId);
+
+render('index', false, [
+    'tricounts' => $myTricounts,
+    'userId' => $userId,
+    'js' => 'home',
+    'css' => 'home'
+]);

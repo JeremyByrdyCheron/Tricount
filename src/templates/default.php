@@ -8,12 +8,20 @@
 	<?php if (!empty($css)) { ?>
 		<link rel="stylesheet" href="assets/css/<?= $css ?>.css">
 	<?php } ?>
-	<title>Document<?= isset($title) ? ' - ' . $title : '' ?></title>
+	<title>Tricount<?= isset($title) ? ' - ' . $title : '' ?></title>
 </head>
+
+<header> <a href="/profile" class="profile-button">
+		👤 Profil
+	</a></header>
 
 <body>
 	<main>
 		<?= $content ?>
+
+		<?php if (!empty($js)): ?>
+			<script src="assets/js/<?= $js ?>.js"></script>
+		<?php endif; ?>
 	</main>
 </body>
 

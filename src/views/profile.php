@@ -95,7 +95,7 @@
 
                 <button type="submit" name="updateInfo" value="1">Mettre à jour mes informations</button>
             </form>
-            <a href="/">Annuler</a>
+            <a href="profile">Annuler</a>
         <?php endif; ?>
     <?php else: ?>
         <h2>Mes informations</h2>
@@ -109,6 +109,25 @@
         <?php endif; ?>
         <a href="?action=update_info">Mettre à jour mes coordonnées</a>
     <?php endif; ?>
+
+    <h2>Paramètres</h2>
+    <div class="settings-container">
+        <div class="setting-item">
+            <span>Mode Sombre</span>
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle" name="dark_mode">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="setting-item">
+            <span>Notifications</span>
+            <label class="switch">
+                <input type="checkbox" id="notifications-toggle" name="notifications" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
 
     <form method="post">
         <button type="submit" name="deconnect" value="1">Se déconnecter</button>
@@ -138,7 +157,7 @@
 
             <button type="submit" name="updatePassword" value="1">Changer le mot de passe</button>
         </form>
-        <a href="/">Annuler</a>
+        <a href="profile">Annuler</a>
     <?php else: ?>
         <a href="?action=change_password">Changer mon mot de passe</a>
     <?php endif; ?>
@@ -154,7 +173,7 @@
             <?php endif; ?>
             <button type="submit" name="confirmDelete" value="1">Supprimer définitivement mon compte</button>
         </form>
-        <a href="/">Annuler</a>
+        <a href="profile">Annuler</a>
     <?php else: ?>
         <a href="?action=delete_account">Supprimer mon compte</a>
     <?php endif; ?>
@@ -166,5 +185,7 @@ render('default', true, [
     'title' => 'Profil',
     'css' => 'profile',
     'content' => ob_get_clean(),
+    'js' => 'theme',
+
 ]);
 ?>
